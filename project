@@ -1,0 +1,9 @@
+kubectl create ns utkarsh
+cd utkarsh
+kubectl create deployment backend --image=kharatramesh/mit:databasemit -n utkarsh --dry-run -o yaml > backend.yaml
+
+vi backend.yaml
+kubectl create -f backend.yaml
+kubectl get pods -o wide -n utkarsh
+
+kubectl exec -it backend-65c9744469-fw7bx bash -n utkarsh
