@@ -7,3 +7,17 @@ kubectl create -f backend.yaml
 kubectl get pods -o wide -n utkarsh
 
 kubectl exec -it backend-65c9744469-fw7bx bash -n utkarsh
+
+mysql -u root -p
+
+---------- mysql commands -----------
+alter user 'root'@'localhost' identified with mysql_native_password by '123';
+alter user 'root'@'%' identified with mysql_native_password by '123';
+
+exit // exit mysql
+exit // exit bash
+
+
+kubectl expose deployment/backend --name=backend --type=ClusterIP --port=3306 -n utkarsh 
+kubectl get service -n utkarsh
+kubectl describe service backend -n utkarsh
