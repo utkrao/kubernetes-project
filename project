@@ -21,3 +21,19 @@ exit // exit bash
 kubectl expose deployment/backend --name=backend --type=ClusterIP --port=3306 -n utkarsh 
 kubectl get service -n utkarsh
 kubectl describe service backend -n utkarsh
+
+
+// ------------------ frontend ------------------
+
+kubectl create deployment frontend --image=kharatramesh/mit:frontendmit -n utkarsh --dry-run -o yaml > frontend.yaml
+vi frontend.yaml
+
+kubectl apply -f frontend.yaml
+kubectl get pods -n utkarsh
+
+kubectl expose deployment/frontend --name=frontendservice --type=NodePort --port=80 -n utkarsh 
+kubectl exec -it frontend-7fb8c698c5-9snpg bash -n utkarsh
+
+
+kubectl get service -n utkarsh
+
