@@ -1,5 +1,7 @@
 kubectl create ns utkarsh
 cd utkarsh
+
+------------------ backend ------------------
 kubectl create deployment backend --image=kharatramesh/mit:databasemit -n utkarsh --dry-run -o yaml > backend.yaml
 
 vi backend.yaml
@@ -10,9 +12,10 @@ kubectl exec -it backend-65c9744469-fw7bx bash -n utkarsh
 
 mysql -u root -p
 
----------- mysql commands -----------
+---------- mysql commands start -----------
 alter user 'root'@'localhost' identified with mysql_native_password by '123';
 alter user 'root'@'%' identified with mysql_native_password by '123';
+----------- mysql commands end ------------
 
 exit // exit mysql
 exit // exit bash
@@ -23,7 +26,7 @@ kubectl get service -n utkarsh
 kubectl describe service backend -n utkarsh
 
 
-// ------------------ frontend ------------------
+------------------ frontend ------------------
 
 kubectl create deployment frontend --image=kharatramesh/mit:frontendmit -n utkarsh --dry-run -o yaml > frontend.yaml
 vi frontend.yaml
